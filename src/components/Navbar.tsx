@@ -303,8 +303,9 @@ export default function Navbar() {
     const navLinks = [
         { label: 'About', href: '#about' },
         { label: 'Case Studies', href: '#case-studies' },
+        { label: 'Blog', href: '#blog' },
         { label: 'Testimonials', href: '#testimonials' },
-        { label: 'Contact', href: '#home' },
+        { label: 'Contact', href: '#contact' },
     ];
 
     return (
@@ -446,8 +447,9 @@ export default function Navbar() {
 
                         {[
                             { label: 'Case Studies', href: '#case-studies' },
+                            { label: 'Blog', href: '#blog' },
                             { label: 'Testimonials', href: '#testimonials' },
-                            { label: 'Contact', href: '#home' },
+                            { label: 'Contact', href: '#contact' },
                         ].map(link => (
                             <a
                                 key={link.label}

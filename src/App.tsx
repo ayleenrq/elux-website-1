@@ -10,6 +10,9 @@ import CaseStudiesArchive from './pages/CaseStudiesArchive';
 import CaseStudyDetail from './pages/CaseStudyDetail';
 import Testimonials from './pages/Testimonials';
 import Industries from './pages/Industries';
+import Contact from './pages/Contact';
+import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
 
 import Footer from './components/Footer';
 
@@ -31,6 +34,9 @@ function App() {
     if (hash.startsWith('#case-study-detail')) return <CaseStudyDetail />;
     if (hash === '#testimonials') return <Testimonials />;
     if (hash.startsWith('#industries')) return <Industries />;
+    if (hash === '#contact') return <Contact />;
+    if (hash === '#blog') return <Blog />;
+    if (hash.startsWith('#blog/')) return <BlogDetail />;
     return (
       <>
         <Hero />
@@ -45,7 +51,7 @@ function App() {
       <Navbar />
       <main>
         {renderPage()}
-        <BottomCTA />
+        {hash !== '#contact' && <BottomCTA />}
       </main>
       <Footer />
     </div>
