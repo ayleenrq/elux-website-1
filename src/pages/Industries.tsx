@@ -867,7 +867,7 @@ function FeaturedCases() {
                                     </ul>
 
                                     <button
-                                        className="bg-[#ff7e00] text-white text-[12px] font-bold uppercase tracking-widest px-8 py-4 rounded-lg hover:bg-[#e67300] transition-colors w-fit flex items-center gap-2 shadow-sm"
+                                        className="bg-black text-white text-[12px] font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:bg-gray-800 transition-colors w-fit flex items-center gap-2 shadow-sm"
                                     >
                                         Explore <span className="text-lg leading-none font-normal relative bottom-[1px]">→</span>
                                     </button>
@@ -1219,7 +1219,7 @@ function CollaborationModelsSection() {
                                     <ul className="space-y-6">
                                         {active.whatYouGet.map((item, i) => (
                                             <li key={i} className="flex items-start gap-4">
-                                                <span className="text-[#ff6600] text-2xl mt-0.5 leading-none font-serif">*</span>
+                                                <span className="text-blue-600 text-2xl mt-0.5 leading-none font-serif">*</span>
                                                 <span className="text-gray-500 font-medium leading-[1.6] tracking-tight">{item}</span>
                                             </li>
                                         ))}
@@ -1229,7 +1229,7 @@ function CollaborationModelsSection() {
 
                             {/* Actions */}
                             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-t border-gray-100 pt-10">
-                                <button className="bg-[#ff6600] text-white text-[12px] font-bold uppercase tracking-widest px-8 py-4 rounded-lg hover:bg-[#e65c00] transition-colors flex items-center gap-2 mb-6 sm:mb-0">
+                                <button className="bg-black text-white text-[12px] font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:bg-gray-800 transition-colors flex items-center gap-2 mb-6 sm:mb-0">
                                     Explore All <span className="text-lg leading-none">→</span>
                                 </button>
 
