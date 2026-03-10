@@ -53,7 +53,7 @@ const BUDGETS = [
     { id: '5k-15k', label: '$5,000 – $15,000', sub: 'Mid-scope' },
     { id: '15k-50k', label: '$15,000 – $50,000', sub: 'Full product' },
     { id: '50k-plus', label: '$50,000+', sub: 'Enterprise / long-term' },
-    { id: 'undecided', label: "I'm not sure", sub: 'Let's figure it out together' },
+    { id: 'undecided', label: "I'm not sure", sub: "Let's figure it out together" },
 ];
 
 const STEPS = [
