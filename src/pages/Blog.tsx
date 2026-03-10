@@ -150,7 +150,7 @@ function FeaturedCard({ post }: { post: typeof posts[0] }) {
 
 
 // ─────────────────────────────────────────────
-// ARTICLE LIST ITEM  (right column — text only)
+// ARTICLE LIST ITEM  (right column — with thumbnail)
 // ─────────────────────────────────────────────
 function ArticleListItem({ post, delay, isLast }: { post: typeof posts[0]; delay: number; isLast: boolean }) {
     const navigate = () => { window.location.hash = `#blog/${post.slug}`; };
@@ -159,16 +159,39 @@ function ArticleListItem({ post, delay, isLast }: { post: typeof posts[0]; delay
             data-animate
             data-delay={String(delay)}
             onClick={navigate}
-            className={`group cursor-pointer py-6 ${!isLast ? 'border-b border-gray-200' : ''}`}
+            className={`group cursor-pointer py-6 flex flex-col sm:flex-row gap-5 lg:gap-6 items-start ${!isLast ? 'border-b border-gray-200' : ''}`}
         >
-            <p className="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-2">{post.category}</p>
-            <h3 className="text-gray-900 font-display font-medium tracking-tight text-xl leading-snug group-hover:text-blue-600 transition-colors duration-300 mb-3">
-                {post.title}
-            </h3>
-            <div className="flex items-center gap-3">
-                <span className="text-sm font-normal text-gray-400">{post.date}</span>
-                <span className="text-gray-300">·</span>
-                <span className="text-sm font-normal text-gray-400">{post.readTime}</span>
+            {/* Thumbnail — 4:3 */}
+            <div className="relative w-full sm:w-[180px] lg:w-[260px] flex-shrink-0 rounded-xl overflow-hidden bg-gray-100" style={{ aspectRatio: '4/3' }}>
+                <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+            </div>
+
+            {/* Text */}
+            <div className="flex flex-col flex-1 min-w-0 w-full">
+                <h3 className="text-gray-900 font-display font-medium tracking-tight text-lg lg:text-xl leading-snug group-hover:text-blue-600 transition-colors duration-300 mb-2.5">
+                    {post.title}
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed mb-5 line-clamp-2 lg:line-clamp-3">
+                    {post.excerpt}
+                </p>
+                <div className="flex items-center justify-between mt-auto">
+                    <div className="flex items-center gap-2">
+                        <span className="text-sm font-normal text-gray-500">{post.date}</span>
+                        <span className="text-gray-300">·</span>
+                        <span className="text-sm font-normal text-gray-500">{post.readTime}</span>
+                    </div>
+                    <span className="text-sm font-semibold text-gray-900 flex items-center gap-1.5 group-hover:text-blue-600 transition-colors">
+                        Read Article
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                    </span>
+                </div>
             </div>
         </article>
     );
@@ -185,45 +208,43 @@ function BlogCard({ post, delay }: { post: typeof posts[0]; delay: number }) {
             data-animate
             data-delay={String(delay)}
             onClick={navigate}
-            className="group flex flex-col cursor-pointer"
+            className="group flex flex-col cursor-pointer bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-black/5 transition-all duration-300 h-full"
         >
             {/* Image */}
-            <div className="relative rounded-2xl overflow-hidden mb-6 bg-gray-100" style={{ aspectRatio: '16/10' }}>
+            <div className="relative overflow-hidden bg-gray-100 aspect-video">
                 <img
                     src={post.image}
                     alt={post.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="bg-white text-black text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
-                        {post.category}
+            </div>
+
+            <div className="flex flex-col flex-1 p-6 lg:p-8">
+                <h3 className="text-gray-900 font-display font-medium tracking-tight text-xl leading-snug mb-3 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
+                    {post.title}
+                </h3>
+
+                <p className="text-gray-500 text-sm font-normal leading-relaxed flex-1 mb-8 line-clamp-3">
+                    {post.excerpt}
+                </p>
+
+                <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-100">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-gray-900 flex items-center justify-center text-white flex-shrink-0">
+                            <span className="font-display font-bold text-base">e</span>
+                        </div>
+                        <div className="flex flex-col">
+                            <span className="text-sm font-semibold text-gray-900 tracking-tight">Elux Space</span>
+                            <span className="text-xs text-gray-500">{post.date}</span>
+                        </div>
+                    </div>
+                    <span className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                        Read More
+                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                     </span>
                 </div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
-            </div>
-
-            <div className="flex items-center gap-3 mb-3">
-                <span className="text-xs font-semibold uppercase tracking-widest text-blue-600">{post.category}</span>
-                <span className="w-1 h-1 rounded-full bg-gray-300" />
-                <span className="text-sm font-normal text-gray-400">{post.readTime}</span>
-            </div>
-
-            <h3 className="text-gray-900 font-display font-medium tracking-tight text-2xl leading-snug mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                {post.title}
-            </h3>
-
-            <p className="text-gray-600 text-base font-normal leading-relaxed flex-1 mb-6 line-clamp-3">
-                {post.excerpt}
-            </p>
-
-            <div className="flex items-center justify-between pt-5 border-t border-gray-200">
-                <span className="text-sm font-normal text-gray-400">{post.date}</span>
-                <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gray-400 group-hover:text-blue-600 transition-colors duration-300">
-                    Read More
-                    <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                </span>
             </div>
         </article>
     );
@@ -295,14 +316,14 @@ export default function Blog() {
 
                     {/* ── Webflow-style: Featured Left + Article List Right ── */}
                     {(activeCategory === 'All' || activeCategory === featuredPost.category) && (
-                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 pb-20 border-b border-gray-200">
-                            {/* Left: Big featured card */}
-                            <div className="lg:col-span-7">
+                        <div className="grid grid-cols-1 lg:grid-cols-[40%_1fr] gap-12 lg:gap-16 mb-20 pb-20 border-b border-gray-200 items-start">
+                            {/* Left: Featured card (Sticky) */}
+                            <div className="sticky top-32">
                                 <FeaturedCard post={featuredPost} />
                             </div>
 
-                            {/* Right: Latest articles list */}
-                            <div className="lg:col-span-5">
+                            {/* Right: Latest articles list with thumbnails */}
+                            <div className="flex flex-col">
                                 <div className="flex items-center justify-between mb-2 pb-5 border-b border-gray-900">
                                     <p className="text-base font-semibold text-gray-900 tracking-tight">Latest articles</p>
                                     <span className="text-xs font-semibold uppercase tracking-widest text-gray-400">
@@ -321,20 +342,20 @@ export default function Blog() {
                         </div>
                     )}
 
-                    {/* ── Grid: remaining articles (2 cols) ── */}
+                    {/* ── Grid: remaining articles (3 cols) ── */}
                     {filteredPosts.length > 4 ? (
                         <>
                             <div className="flex items-center justify-between mb-12">
                                 <p className="text-2xl font-medium tracking-tighter text-gray-900 font-display">More articles</p>
                             </div>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-16">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                                 {filteredPosts.slice(4).map((post, i) => (
                                     <BlogCard key={post.id} post={post} delay={i * 80} />
                                 ))}
                             </div>
                         </>
                     ) : activeCategory !== 'All' && filteredPosts.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-16">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                             {filteredPosts.map((post, i) => (
                                 <BlogCard key={post.id} post={post} delay={i * 80} />
                             ))}
