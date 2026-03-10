@@ -251,22 +251,114 @@ function BlogCard({ post, delay }: { post: typeof posts[0]; delay: number }) {
 }
 
 // ─────────────────────────────────────────────
+// HIGHLIGHT ARTICLES (dark section)
+// ─────────────────────────────────────────────
+function HighlightArticles({ recentPosts }: { recentPosts: typeof posts }) {
+    if (recentPosts.length < 5) return null;
+    const topPost = recentPosts[0];
+    const subPosts = recentPosts.slice(1, 5); // Take next 4 for grid
+
+    return (
+        <div className="mt-16 lg:mt-24" data-animate>
+
+            {/* Grid */}
+            <div className="flex flex-col gap-5 lg:gap-6">
+                {/* Top Card */}
+                <article
+                    className="group bg-[#111111] hover:bg-[#151515] border border-white/5 hover:border-white/10 rounded-2xl overflow-hidden flex flex-col lg:flex-row cursor-pointer transition-all duration-300 relative"
+                    onClick={() => window.location.hash = `#blog/${topPost.slug}`}
+                >
+                    <div className="lg:w-[45%] h-64 lg:h-auto overflow-hidden relative bg-[#0a0a0a]">
+                        <img src={topPost.image} alt={topPost.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90" />
+                    </div>
+                    <div className="lg:w-[55%] p-8 lg:p-12 flex flex-col justify-center">
+                        <h3 className="text-white text-2xl lg:text-[28px] font-display font-medium leading-[1.3] tracking-tight mb-5 group-hover:text-blue-400 transition-colors">
+                            {topPost.title}
+                        </h3>
+                        <p className="text-gray-400 text-[15px] leading-[1.7] mb-8 line-clamp-3">
+                            {topPost.excerpt}
+                        </p>
+                        <div className="flex items-center justify-between mt-auto">
+                            <div className="flex items-center gap-3">
+                                <div className="w-9 h-9 rounded-full bg-white flex items-center justify-center text-black flex-shrink-0">
+                                    <span className="font-display font-bold text-sm">e</span>
+                                </div>
+                                <div className="flex flex-col">
+                                    <span className="text-[13px] font-semibold text-white tracking-tight leading-none mb-1">Elux Space</span>
+                                    <span className="text-xs text-gray-500 leading-none">{topPost.date}</span>
+                                </div>
+                            </div>
+                            <span className="text-[12px] font-bold text-white group-hover:text-blue-400 transition-colors flex items-center gap-1.5 uppercase tracking-widest">
+                                Read Article
+                                <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                            </span>
+                        </div>
+                    </div>
+                </article>
+
+                {/* Sub Cards Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-6">
+                    {subPosts.map((post) => (
+                        <article
+                            key={post.id}
+                            className="group bg-[#111111] hover:bg-[#151515] border border-white/5 hover:border-white/10 rounded-2xl overflow-hidden flex flex-col sm:flex-row cursor-pointer transition-all duration-300"
+                            onClick={() => window.location.hash = `#blog/${post.slug}`}
+                        >
+                            <div className="sm:w-[45%] h-52 sm:h-auto overflow-hidden relative bg-[#0a0a0a]">
+                                <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90" />
+                            </div>
+                            <div className="sm:w-[55%] p-6 lg:p-8 flex flex-col justify-center">
+                                <h3 className="text-white text-[18px] lg:text-[20px] font-display font-medium leading-[1.35] tracking-tight mb-3.5 group-hover:text-blue-400 transition-colors line-clamp-3">
+                                    {post.title}
+                                </h3>
+                                <p className="text-gray-400 text-[14px] leading-[1.6] mb-8 line-clamp-2 md:line-clamp-3">
+                                    {post.excerpt}
+                                </p>
+                                <div className="flex items-center justify-between mt-auto">
+                                    <div className="flex items-center gap-2.5">
+                                        <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-black flex-shrink-0">
+                                            <span className="font-display font-bold text-xs">e</span>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <span className="text-[12px] font-semibold text-white tracking-tight leading-none mb-1">Elux Space</span>
+                                            <span className="text-[11px] text-gray-500 leading-none">{post.date}</span>
+                                        </div>
+                                    </div>
+                                    <span className="text-[11px] font-bold text-white group-hover:text-blue-400 transition-colors flex items-center gap-1.5 uppercase tracking-widest hidden xl:flex">
+                                        Read
+                                        <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// ─────────────────────────────────────────────
 // BLOG HERO
 // ─────────────────────────────────────────────
-function BlogHero() {
+function BlogHero({ allPosts }: { allPosts: typeof posts }) {
     return (
-        <section className="min-h-[90vh] bg-[#0a0a0a] text-white flex flex-col justify-center px-8">
-            <div className="max-w-7xl mx-auto w-full pt-20">
-                <p data-animate className="text-blue-500 text-sm tracking-widest uppercase font-semibold mb-6">
-                    Insights & Knowledge
-                </p>
-                <h1 data-animate data-delay="60" className="text-[72px] leading-none tracking-tighter font-display">
-                    Ideas, craft, and lessons<br />
-                    from the Elux team.
-                </h1>
-                <p data-animate data-delay="140" className="text-gray-400 text-2xl max-w-3xl mt-8 font-medium leading-relaxed">
-                    Deep dives into product design, UX strategy, and digital craft — written by the people building real products every day.
-                </p>
+        <section className="bg-[#0a0a0a] text-white pt-32 pb-24 px-8 border-b border-white/5">
+            <div className="max-w-7xl mx-auto w-full">
+                <div className="max-w-3xl">
+                    <p data-animate className="text-[#9d4edd] text-[13px] tracking-widest uppercase font-bold mb-6">
+                        Recent Blog Post
+                    </p>
+                    <h1 data-animate data-delay="60" className="text-[56px] lg:text-[72px] leading-[1.05] tracking-tighter font-display">
+                        Highlight Article
+                    </h1>
+                    <p data-animate data-delay="140" className="text-gray-400 text-xl lg:text-2xl mt-8 font-medium leading-[1.6] max-w-2xl">
+                        Have an idea in mind? We're excited to hear about your project and help you bring it to life. Tell us your vision, and we'll craft the perfect solution for you.
+                    </p>
+                </div>
+
+                {/* Embedded Highlight Section */}
+                <HighlightArticles recentPosts={allPosts} />
             </div>
         </section>
     );
@@ -289,7 +381,7 @@ export default function Blog() {
     return (
         <>
             {/* ── Hero ── */}
-            <BlogHero />
+            <BlogHero allPosts={posts} />
 
             {/* ── Main content ── */}
             <section className="bg-white py-16 px-8">
