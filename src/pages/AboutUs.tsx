@@ -446,55 +446,148 @@ function HowWeWork() {
 
 function Team() {
     const team = [
-        { name: 'DARRELL STEWARD', role: 'CONTENT STRATEGIST', image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=800&q=80' },
-        { name: 'JACOB JONES', role: 'SOCIAL MEDIA MANAGER', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80' },
-        null, // EMPTY SLOT
-        { name: 'ARMAN NIUM', role: 'CREATIVE DIRECTOR', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80' },
-        { name: 'THERESA WEBB', role: 'MARKETING ANALYST', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&q=80' },
-        { name: 'KATHRYN MURPHY', role: 'BRAND STRATEGIST', image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&q=80' },
-        { name: 'ROBERT FOX', role: 'GRAPHIC DESIGNER', image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=800&q=80' },
-        null // EMPTY SLOT
+        {
+            name: 'Adrian Karev',
+            role: 'Creative Director',
+            image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Sophia Lee',
+            role: 'Lead UX Designer',
+            image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Marcus Veen',
+            role: 'Product Strategist',
+            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Priya Nair',
+            role: 'UI Designer',
+            image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Luca Ferrara',
+            role: 'Front-End Engineer',
+            image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Dana Marsh',
+            role: 'Brand Strategist',
+            image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'James Okafor',
+            role: 'Motion Designer',
+            image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Yuki Tanaka',
+            role: 'Content Strategist',
+            image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Rafael Costa',
+            role: 'UX Researcher',
+            image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Nina Kovač',
+            role: 'Visual Designer',
+            image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'David Park',
+            role: 'Product Manager',
+            image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Amara Diallo',
+            role: 'Interaction Designer',
+            image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Tom Eriksen',
+            role: 'Full-Stack Engineer',
+            image: 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Leila Hassan',
+            role: 'Design Systems Lead',
+            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Owen Blake',
+            role: 'Creative Technologist',
+            image: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=600&q=80&fit=crop&crop=face',
+        },
+        {
+            name: 'Mei Lin',
+            role: 'Copywriter & Strategist',
+            image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=80&fit=crop&crop=face',
+        },
     ];
 
     return (
-        <section className="bg-white py-40 px-8 border-0 shadow-none">
-            <div className="max-w-7xl mx-auto border-0 shadow-none">
-                {/* Updated Header Section */}
-                <div className="mb-32 border-0 shadow-none">
-                    <div className="flex items-center gap-4 mb-8 border-0 shadow-none">
-                        <span className="block w-2 h-2 bg-blue-600 rounded-full border-0 shadow-none"></span>
-                        <h4 className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase border-0 shadow-none">OUR SQUAD</h4>
+        <section className="bg-white py-40 px-8">
+            <div className="max-w-7xl mx-auto">
+
+                {/* Section Header */}
+                <div className="mb-20">
+                    <div className="flex items-center gap-3 mb-8">
+                        <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
+                        <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase">Meet The Team</span>
                     </div>
-                    <h2 className="text-[64px] font-medium tracking-tighter leading-[1.1] text-gray-900 mb-10 border-0 shadow-none max-w-4xl font-display">
-                        The Minds Behind <br /> the Craft.
-                    </h2>
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-0 shadow-none">
-                        <p className="max-w-2xl text-2xl text-gray-400 font-medium leading-relaxed border-0 shadow-none">
-                            A collective of senior designers and product thinkers dedicated to building valid foundations for the next generation of digital giants.
-                        </p>
-                        <a href="#" className="underline font-bold text-xs tracking-widest border-0 shadow-none whitespace-nowrap mb-2">JOIN US</a>
+                    <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+                        <h2 className="text-[56px] md:text-[72px] font-medium tracking-tighter leading-[1] text-gray-900 font-display max-w-2xl">
+                            The minds behind<br /> the craft.
+                        </h2>
+                        <div className="flex flex-col items-start lg:items-end gap-6 lg:pb-2">
+                            <p className="text-gray-500 text-lg font-normal leading-relaxed max-w-sm lg:text-right">
+                                A collective of senior designers and strategists building exceptional digital products every day.
+                            </p>
+                            <a
+                                href="#"
+                                className="group inline-flex items-center gap-2 text-sm font-semibold text-gray-900 border-b border-gray-900 pb-0.5 hover:text-blue-600 hover:border-blue-600 transition-colors duration-300"
+                            >
+                                Join our team
+                                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 w-full border-0 shadow-none">
-                    {team.map((member, index) => (
-                        member ? (
-                            <div key={member.name} className="flex flex-col border-0 shadow-none group">
-                                <div className="aspect-[4/5] overflow-hidden rounded-none mb-6 border-0 shadow-none bg-gray-100">
-                                    <img
-                                        src={member.image}
-                                        alt={member.name}
-                                        className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 shadow-none border-0"
-                                    />
-                                </div>
-                                <h4 className="text-sm font-bold tracking-tight text-gray-900 border-0 shadow-none mb-1">{member.name}</h4>
-                                <p className="text-[10px] tracking-[0.1em] text-gray-400 uppercase font-semibold border-0 shadow-none">{member.role}</p>
+                {/* Divider */}
+                <div className="border-t border-gray-200 mb-16" />
+
+                {/* Team Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+                    {team.map((member) => (
+                        <div key={member.name} className="group flex flex-col">
+                            {/* Square Image */}
+                            <div className="relative aspect-square overflow-hidden rounded-2xl bg-gray-100 mb-5">
+                                <img
+                                    src={member.image}
+                                    alt={member.name}
+                                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                                />
+                                {/* Subtle overlay on hover */}
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500 rounded-2xl" />
                             </div>
-                        ) : (
-                            <div key={`empty-${index}`} className="hidden lg:block border-0 shadow-none"></div>
-                        )
+
+                            {/* Name & Role */}
+                            <h4 className="text-gray-900 font-medium tracking-tight text-base leading-snug mb-1">
+                                {member.name}
+                            </h4>
+                            <p className="text-gray-500 text-sm font-normal">
+                                {member.role}
+                            </p>
+                        </div>
                     ))}
                 </div>
+
             </div>
         </section>
     );

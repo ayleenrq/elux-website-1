@@ -376,6 +376,248 @@ function ContactForm() {
 }
 
 // ─────────────────────────────────────────────
+// PROJECT CALCULATOR — dark section
+// ─────────────────────────────────────────────
+function ProjectCalculatorSection() {
+    const projectTypes = [
+        { id: 'ui-ux', label: 'UI/UX Design', icon: '✏️', desc: 'Wireframes, prototypes, user flows' },
+        { id: 'product-design', label: 'Product Design', icon: '🎨', desc: 'End-to-end product experience' },
+        { id: 'webflow', label: 'Webflow / Framer', icon: '⚡', desc: 'No-code website development' },
+        { id: 'branding', label: 'Branding', icon: '✦', desc: 'Identity, logo, style guide' },
+        { id: 'web-app', label: 'Web Application', icon: '🖥️', desc: 'SaaS platforms & dashboards' },
+        { id: 'mobile', label: 'Mobile App', icon: '📱', desc: 'iOS, Android, cross-platform' },
+    ];
+
+    const budgetRanges = [
+        { id: 'under-5k', label: '< $5,000', sub: 'Starter scope' },
+        { id: '5k-15k', label: '$5k – $15k', sub: 'Mid scope' },
+        { id: '15k-30k', label: '$15k – $30k', sub: 'Full product' },
+        { id: '30k-plus', label: '$30k+', sub: 'Enterprise' },
+        { id: 'flexible', label: "Let's talk", sub: 'Flexible budget' },
+    ];
+
+    const [calcData, setCalcData] = useState({
+        name: '',
+        email: '',
+        company: '',
+        description: '',
+        projectType: '',
+        budget: '',
+    });
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (calcData.name && calcData.email && calcData.projectType) {
+            setSubmitted(true);
+        }
+    };
+
+    const inputClass = 'w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white text-[14px] font-medium placeholder-gray-600 focus:outline-none focus:border-blue-600/60 focus:bg-white/8 transition-all';
+
+    if (submitted) {
+        return (
+            <section className="bg-[#0f0f0f] py-32 px-8 border-t border-white/5">
+                <div className="max-w-3xl mx-auto text-center">
+                    <div className="w-16 h-16 rounded-full bg-blue-600/20 flex items-center justify-center mx-auto mb-8">
+                        <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h3 className="text-[36px] font-medium tracking-tighter text-white font-display mb-4"
+                    >Project brief received!</h3>
+                    <p className="text-gray-400 text-lg font-medium leading-relaxed mb-8">
+                        Thanks {calcData.name.split(' ')[0]}! We'll review your project and reach out within 24 hours with a customised estimate.
+                    </p>
+                    <button
+                        onClick={() => setSubmitted(false)}
+                        className="text-[11px] font-bold uppercase tracking-widest text-gray-500 hover:text-white border border-white/10 hover:border-white/30 px-6 py-3 rounded-full transition-all duration-200"
+                    >
+                        Submit another brief
+                    </button>
+                </div>
+            </section>
+        );
+    }
+
+    return (
+        <section className="bg-[#0f0f0f] py-32 px-8 border-t border-white/5">
+            <div className="max-w-7xl mx-auto">
+
+                {/* Section Header */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20 items-end">
+                    <div>
+                        <div className="flex items-center gap-2 mb-6">
+                            <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
+                            <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase">Project Calculator</span>
+                        </div>
+                        <h2 className="text-[40px] md:text-[56px] font-medium tracking-tighter text-white leading-[1.0] font-display">
+                            Estimate your<br />project cost
+                        </h2>
+                    </div>
+                    <p className="text-gray-400 text-lg font-medium leading-[1.6] tracking-tight lg:max-w-sm">
+                        Tell us what you're building and we'll put together a tailored estimate — no strings attached.
+                    </p>
+                </div>
+
+                <form onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+                        {/* LEFT col: personal details */}
+                        <div className="space-y-6">
+
+                            {/* Name + Email */}
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label className="block text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">Full Name *</label>
+                                    <input
+                                        type="text"
+                                        required
+                                        value={calcData.name}
+                                        onChange={e => setCalcData({ ...calcData, name: e.target.value })}
+                                        placeholder="Ada Lovelace"
+                                        className={inputClass}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">Email *</label>
+                                    <input
+                                        type="email"
+                                        required
+                                        value={calcData.email}
+                                        onChange={e => setCalcData({ ...calcData, email: e.target.value })}
+                                        placeholder="ada@company.com"
+                                        className={inputClass}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Company */}
+                            <div>
+                                <label className="block text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">Company / Product Name</label>
+                                <input
+                                    type="text"
+                                    value={calcData.company}
+                                    onChange={e => setCalcData({ ...calcData, company: e.target.value })}
+                                    placeholder="Acme Inc."
+                                    className={inputClass}
+                                />
+                            </div>
+
+                            {/* Description */}
+                            <div>
+                                <label className="block text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">Project Description</label>
+                                <textarea
+                                    rows={5}
+                                    value={calcData.description}
+                                    onChange={e => setCalcData({ ...calcData, description: e.target.value })}
+                                    placeholder="Describe your project — what are you building, who is it for, and what problem does it solve?"
+                                    className={`${inputClass} resize-none`}
+                                />
+                            </div>
+                        </div>
+
+                        {/* RIGHT col: project type + budget */}
+                        <div className="space-y-10">
+
+                            {/* Project Type */}
+                            <div>
+                                <label className="block text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase mb-5">
+                                    Project Type *
+                                </label>
+                                <div className="grid grid-cols-2 gap-3">
+                                    {projectTypes.map((pt) => {
+                                        const selected = calcData.projectType === pt.id;
+                                        return (
+                                            <button
+                                                key={pt.id}
+                                                type="button"
+                                                onClick={() => setCalcData({ ...calcData, projectType: pt.id })}
+                                                className={`group text-left flex items-start gap-4 p-4 rounded-2xl border transition-all duration-200 ${selected
+                                                    ? 'border-blue-600/60 bg-blue-600/10'
+                                                    : 'border-white/8 bg-white/3 hover:border-white/20 hover:bg-white/5'
+                                                    }`}
+                                            >
+                                                <span className="text-xl flex-shrink-0 mt-0.5">{pt.icon}</span>
+                                                <div className="min-w-0">
+                                                    <p className={`text-[13px] font-semibold tracking-tight leading-snug ${selected ? 'text-blue-300' : 'text-white'
+                                                        }`}>
+                                                        {pt.label}
+                                                    </p>
+                                                    <p className="text-[11px] text-gray-500 mt-0.5 leading-snug">{pt.desc}</p>
+                                                </div>
+                                                {selected && (
+                                                    <span className="ml-auto flex-shrink-0 w-4 h-4 rounded-full bg-blue-600 flex items-center justify-center">
+                                                        <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                                        </svg>
+                                                    </span>
+                                                )}
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                            {/* Budget Range */}
+                            <div>
+                                <label className="block text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase mb-5">
+                                    Budget Range
+                                </label>
+                                <div className="flex flex-wrap gap-2">
+                                    {budgetRanges.map((b) => {
+                                        const selected = calcData.budget === b.id;
+                                        return (
+                                            <button
+                                                key={b.id}
+                                                type="button"
+                                                onClick={() => setCalcData({ ...calcData, budget: b.id })}
+                                                className={`flex flex-col px-5 py-3 rounded-xl border transition-all duration-200 ${selected
+                                                    ? 'border-white bg-white text-black'
+                                                    : 'border-white/10 text-gray-300 hover:border-white/30 hover:text-white'
+                                                    }`}
+                                            >
+                                                <span className={`text-[13px] font-bold tracking-tight ${selected ? 'text-black' : ''}`}>
+                                                    {b.label}
+                                                </span>
+                                                <span className={`text-[10px] mt-0.5 ${selected ? 'text-gray-600' : 'text-gray-600'}`}>
+                                                    {b.sub}
+                                                </span>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                            {/* Submit */}
+                            <div className="pt-2">
+                                <button
+                                    type="submit"
+                                    disabled={!calcData.name || !calcData.email || !calcData.projectType}
+                                    className="group w-full flex items-center justify-center gap-3 bg-blue-600 text-white text-[12px] font-bold uppercase tracking-widest px-8 py-5 rounded-full hover:bg-blue-700 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300"
+                                >
+                                    Get My Estimate
+                                    <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center transition-colors group-hover:bg-white/30">
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </div>
+                                </button>
+                                <p className="text-gray-600 text-[11px] text-center font-medium mt-4">
+                                    No commitment. We'll send a tailored estimate within 24 hours.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </section>
+    );
+}
+
+// ─────────────────────────────────────────────
 // AREAS OF EXPERTISE — white section
 // ─────────────────────────────────────────────
 function AreasOfExpertise() {
@@ -765,6 +1007,7 @@ export default function Contact() {
         <>
             <ContactHero />
             <ContactForm />
+            <ProjectCalculatorSection />
             <AreasOfExpertise />
             <ClientReviews />
             <SocialProofLogos />
